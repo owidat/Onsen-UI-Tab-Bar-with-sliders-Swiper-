@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  
+  <title>My App</title>  
+  
+  <link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
+  <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">  
+  <link rel="stylesheet" href="styles/app.css"/>
+
+  <script src="lib/onsen/js/angular/angular.js"></script>    
+  <script src="lib/onsen/js/onsenui.js"></script>    
+
+  <script src="cordova.js"></script>
+  <script src="js/app.js"></script> 
+
+  <script>
+    angular.module('app', ['onsen']);
+
+    angular.module('app').controller('AppController', function($scope) {
+      $scope.doSomething = function() {
+        setTimeout(function() {
+          alert('tapped');
+        }, 100);
+      };
+      $scope.swipe = function() {
+        
+          var mySwiper = new Swiper('.swiper-container', {
+                                        pagination: '.pagination',
+                                        loop: true,
+                                        paginationClickable: true,
+                                        mode: 'vertical',
+                				        cssWidthAndHeight: true,
+                				        calculateHeight: true,
+                                        speed: 600
+                                      });
+      };
+        
+        ons.ready(function() {
+          $scope.swipe();
+        });
+        
+        
+    });
+  </script>
+  
+
+        <link rel="stylesheet" href="css/idangerous.swiper.css">
+        <link rel="stylesheet" href="css/SwiperCustme.css">        
+        <link rel="stylesheet" href="css/ons.css">
+
+</head>
+
+<body ng-controller="AppController">    
+  
+  <ons-tabbar id="myNavigator">
+    <ons-tabbar-item active="true" page="home.html" ng-click="swipe()">
+      <div class="tab">
+        <ons-icon icon="ion-home" class="tab-icon"></ons-icon>
+        <div class="tab-label">Timeline</div>
+      </div>
+    </ons-tabbar-item>
+
+    <ons-tabbar-item page="settings.html">
+      <div class="tab">
+        <ons-icon icon="ion-gear-a" class="tab-icon"></ons-icon>
+        <div class="tab-label">Settings</div>
+      </div>
+    </ons-tabbar-item>
+  </ons-tabbar>
+
+  <ons-template id="home.html">
+      
+    <ons-navigator>
+      <ons-page>
+        <ons-toolbar>
+          <div class="center">Home</div>
+        </ons-toolbar>
+          <div id="my-content">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide blue-slide">
+                        <div class="title">Vertical Mode</div>
+                        <p>Swipe to the Top or to the Bottom</p>
+                    </div>
+                    <div class="swiper-slide red-slide">
+                        <div class="title">Slide 2</div>
+                        <p>Keep swiping</p>
+                    </div>
+                    <div class="swiper-slide orange-slide">
+                        <div class="title">Slide 3</div>
+                        <p>The last one</p>
+                    </div>
+                </div>
+                <div class="pagination"></div>
+            </div>
+          </div>
+      </ons-page>
+    </ons-navigator>
+  </ons-template>
+
+  <ons-template id="settings.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="center">Settings</div>
+      </ons-toolbar>
+
+    </ons-page>
+  </ons-template>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/idangerous.swiper-2.1.min.js"></script>
+</body>
+</html>
